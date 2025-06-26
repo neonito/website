@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<head>
+<meta name="robots" content="noindex, noarchive, nofollow">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Source+Code+Pro&display=swap');
+
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 40px 20px 80px 20px;
+    position: relative;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid #e63946;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 15px rgba(230,57,70,0.8);
+  }
+
+  header h1 {
+    font-weight: 700;
+    font-size: 3.2rem;
+    color: #e63946;
+    letter-spacing: 0.12em;
+    animation: fadeInDown 1s ease forwards;
+  }
+
+  header p.terminal {
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #f94144;
+    background: #1b1b1b;
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    box-shadow:
+      0 0 12px #f94144,
+      inset 0 0 15px #f94144;
+    letter-spacing: 0.18em;
+    animation: terminalBlink 1.2s steps(2) infinite;
+    user-select: none;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    flex-grow: 1;
+  }
+
+  section {
+    margin-bottom: 50px;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 1.9rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #e63946;
+    padding-left: 12px;
+    color: #eee;
+    position: relative;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 3px;
+    background: #e63946;
+    border-radius: 3px;
+  }
+
+  p {
+    line-height: 1.7;
+    font-size: 1.1rem;
+    color: #ccc;
+  }
+
+  .skill {
+    margin-bottom: 18px;
+  }
+
+  .skill-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #eee;
+  }
+
+  .skill-bar {
+    background: #2a2a2a;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 28px;
+    box-shadow: inset 0 0 7px #444;
+  }
+
+  .skill-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #e63946, #d62828);
+    border-radius: 15px;
+    text-align: right;
+    padding-right: 12px;
+    color: white;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0.08em;
+    transition: width 2s ease-out;
+    font-family: 'Source Code Pro', monospace;
+    user-select: none;
+    box-shadow: 0 0 8px #e63946;
+  }
+  #pgp {
+    background: #1b1b1b;
+    border: 1.5px solid #e63946;
+    border-radius: 12px;
+    padding: 18px 24px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+    color: #f94144;
+    box-shadow: 0 4px 12px rgb(230 57 70 / 0.7);
+    max-height: 180px;
+    overflow-y: auto;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #eee;
+    font-weight: 600;
+    font-size: 0.95rem;
+    user-select: none;
+  }
+
+  .social-bar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: #1b1b1b;
+    padding: 14px 16px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.8);
+    z-index: 1000;
+  }
+
+  .social-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e63946;
+    font-weight: 700;
+    font-family: 'Source Code Pro', monospace;
+    text-decoration: none;
+    font-size: 1.2rem;
+    width: 48px;
+    height: 48px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+    user-select: none;
+  }
+
+  .social-bar a:hover,
+  .social-bar a:focus {
+    background-color: #e63946;
+    color: #121212;
+    box-shadow: 0 0 14px #ff2222;
+    transform: scale(1.25);
+    outline: none;
+  }
+
+  .social-bar a svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-12px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes terminalBlink {
+    0%, 50% { text-shadow: 0 0 12px #f94144, 0 0 20px #f94144; }
+    51%, 100% { text-shadow: none; }
+  }
+
+.typing {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1.1rem;
+  color: #ccc;
+  line-height: 1.7;
+  max-height: 0;
+  overflow: hidden;
+  animation: revealText 5s forwards;
+}
+
+@keyframes revealText {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 1000px; opacity: 1; }
+}
+
+
+  @keyframes blinkCaret {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: #f94144; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="https://media.licdn.com/dms/image/v2/D4D03AQF4QJiLY7IJww/profile-displayphoto-shrink_800_800/B4DZSRXIh6HcAk-/0/1737605549150?e=1756339200&v=beta&t=FEjuol3jvWszeVRJv6jRWjOxvBbnlmw-rQrFJudIVyM" alt="Profile picture" class="profile-pic" />
+  <h1>Emil Gołuchowski</h1>
+  <br><p class="terminal">OSINT • OPSEC • CTI</p><br>
+</header>
+
+<main>
+  <section id="about-me">
+    <h2>About Me</h2>
+    <p class="typing">
+      I am a cybersecurity expert with a focus on Threat Intelligence. Primarily utilizing OSINT, I specialize in analyzing cybercriminal groups, opsec, and social engineering.
+      I concentrate on identifying mistakes and traces left by cybercriminals, as well as protecting online privacy. My goal is to effectively combine technical knowledge with social aspects to better understand and neutralize online threats.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skill">
+      <div class="skill-label">OSINT</div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-percent="92">92%</div>
+      </div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">OPSEC</div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-percent="87">87%</div>
+      </div>
+    </div>
+    <div class="skill">
+      <div class="skill-label">CTI</div>
+      <div class="skill-bar">
+        <div class="skill-fill" data-percent="85">85%</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pgp">
+    <h2>PGP Key</h2>
+    <pre>
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+e1Pr4UCBUagIbluBvOvFhBlEt5E=
+=lhxa
+-----END PGP PUBLIC KEY BLOCK-----
+
+    </pre>
+  </section>
+</main>
+
+<!-- Social bar on right side vertical -->
+<div class="social-bar" role="navigation" aria-label="Social media links">
+  <a href="https://www.linkedin.com/in/emil-gol/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v14H0V8zm7.5 0h4.7v2.1h.1c.7-1.3 2.4-2.7 4.9-2.7 5.3 0 6.3 3.5 6.3 8V22h-5v-7c0-1.7-.03-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.8V22h-5V8z"/>
+    </svg>
+  </a>
+  <a href="mailto:emilgoluchowski0001@protonmail.com" aria-label="Email" title="Email">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.5 4.5h21v15h-21v-15zm19.5 1.5l-10.5 7.5-10.5-7.5v12h21v-12zm-10.5 6l10.5-7.5h-21l10.5 7.5z"/>
+    </svg>
+  </a>
+  <a href="https://github.com/neonito" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.385.6.113.82-.262.82-.58 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.24 1.84 1.24 1.07 1.83 2.805 1.3 3.49.993.108-.77.42-1.3.763-1.6-2.665-.3-5.466-1.335-5.466-5.934 0-1.31.467-2.38 1.235-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.984-.398 3.003-.403 1.02.005 2.047.137 3.006.403 2.288-1.552 3.294-1.23 3.294-1.23.655 1.653.244 2.873.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.63-5.48 5.924.431.37.815 1.1.815 2.22 0 1.6-.015 2.89-.015 3.28 0 .322.215.698.825.58C20.565 21.796 24 17.297 24 12c0-6.63-5.37-12-12-12z"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    const fills = document.querySelectorAll('.skill-fill');
+    fills.forEach(fill => {
+      const percent = fill.getAttribute('data-percent');
+      setTimeout(() => {
+        fill.style.width = percent + '%';
+      }, 300);
+    });
+  });
+</script>
+
+</body>
+</html>
